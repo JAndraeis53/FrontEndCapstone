@@ -1,0 +1,55 @@
+.tasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+
+ 
+  .task, .taskCard {
+     
+      margin: 1em;
+      padding: 1em;
+      border: 8px solid rgb(224, 128, 37);
+      max-width: 500px;
+      -webkit-box-shadow: 5px 5px 15px 5px lightgrey; 
+      box-shadow: 5px 5px 15px 5px #000000;
+    
+  }
+
+  .taskButtons {
+      margin: .25em
+  }
+
+  .taskCard {
+    display: flex;
+   
+  }
+
+  .allTasks > .taskCard {
+    max-width: 550px;
+    min-width: 500px;
+    box-shadow: 10px 10px 25px 10px #000000;
+    margin: 2em;
+    font-style: oblique;
+    font-weight: bolder;
+    background-color:#f8f8ff;
+    font-size: 16px;
+
+}
+
+.allTasks > .taskCard ~ .taskCard {
+    border: 8px solid rgb(199, 192, 240);
+    max-width: 500px;
+    min-width: 500px;
+    box-shadow: 5px 5px 15px 5px #000000;
+    margin: 1em;
+    font-style: italic;
+    font-weight:  light;
+    background-color: cornsilk;
+    font-size: 16px;
+
+
+}
+
+  
