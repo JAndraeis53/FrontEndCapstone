@@ -1,28 +1,26 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { PlacesProvider } from "./places/PlacesProvider"
-import { PlacesList } from "./places/PlacesList"
-import { PlacesForm } from "./places/PlacesForm"
-// import { SearchFriend } from "./friend/SearchFriend"
-import { Detail } from ""
+import { PlaceProvider } from "./place/PlaceProvider"
+import { PlaceList } from "./place/PlaceList"
+import { PlaceForm } from "./place/PlaceForm"
 
 
 export const ApplicationViews = () => {
     return (
         <>
-            <PlacesProvider>
+            <PlaceProvider>
             <Route exact path="/">
-                <PlacesList />
+                <PlaceList />
             </Route>
 
             <Route exact path="/places/create">
-                <PlacesForm />
+                <PlaceForm />
             </Route>
 
             <Route path="/places/edit/:placesId(\d+)">
-                <PlacesForm />
+                <PlaceForm />
             </Route>
-            </PlacesProvider>
+            </PlaceProvider>
         
         </>
     )
