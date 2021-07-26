@@ -9,17 +9,17 @@ export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
-            <Route exact path="/">
-                <PlaceList />
-            </Route>
+                <Route exact path="/">
+                    <PlaceList />
+                </Route>
 
-            <Route exact path="/places/create">
-                <PlaceForm />
-            </Route>
+                <Route exact path="/places/create">
+                    <PlaceForm />
+                </Route>
 
-            <Route path="/places/edit/:placesId(\d+)">
-                <PlaceForm />
-            </Route>
+                <Route path="/places/edit/:placesId(\d+)">
+                    <PlaceForm />
+                </Route>
             </PlaceProvider>
         
         </>
