@@ -2,6 +2,7 @@ import React, { useContext, createContext, useEffect, useState } from "react"
 import { useHistory } from "react-router"
 import { PlaceContext } from "./PlaceProvider"
 import "./Place.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 // import { useParams } from "react-router-dom"
 // import { VenueContext } from "./VenueProvider"
 
@@ -125,18 +126,119 @@ export const PlaceForm = () => {
     return (
         <>
         <form className="placeForm">
-        <h2 className="placeForm__title">Let's plan the night out</h2>
-        <fieldset>
+            <h2 className="placeForm__title">Let's plan the night out</h2>
+                <fieldset>
+                <div className="form-group-venue"> 
+                <label htmlFor="title">Inside or Outside</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioVenue" 
+                        id="inlineRadioVenueIndoor" value="optionVenueIndoor"/>
+                        <label class="form-check-label" for="inlineRadioVenueIndoor">Indoor</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioVenue" id="inlineRadioVenueOutdoor" value="optionVenueOutdoor"/>
+                        <label class="form-check-label" for="inlineRadioVenueOutdoor">Outdoor</label>
+                    </div>
+                </div>
+                </fieldset>
+                <fieldset>
+                <div className="form-group-active"> 
+                <label htmlFor="title">active type</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioActive" 
+                        id="inlineRadioActiveActive" value="optionActiveActive"/>
+                        <label class="form-check-label" for="inlineRadioActiveActive">Active</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioActive" id="inlineRadioActiveCalm" value="optionActiveCalm"/>
+                        <label class="form-check-label" for="inlineRadioActiveCalm">Calm</label>
+                    </div>
+                </div>
+                </fieldset>
+                <fieldset>
+                <div className="form-group-event"> 
+                <label htmlFor="title">event</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioEvent" 
+                        id="inlineRadioEventFood" value="optionEventFood"/>
+                        <label class="form-check-label" for="inlineRadioEventFood">Food</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioEvent" id="inlineRadioEventPerformance" value="optionEventPerformance"/>
+                        <label class="form-check-label" for="inlineRadioEventPerformance">Performance</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioEvent" id="inlineRadioEventArt" value="optionEventArt"/>
+                        <label class="form-check-label" for="inlineRadioEventArt">Art</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioEvent" id="inlineRadioEventDrinks" 
+                        value="optionEventDrinks"/>
+                        <label class="form-check-label" for="inlineRadioEventDrinks">Drinks</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioEvent" id="inlineRadioEventSports" 
+                        value="optionEventSports"/>
+                        <label class="form-check-label" for="inlineRadioEventSports">Sports</label>
+                    </div>
+                </div>
+                </fieldset>
+                <fieldset>
+                <div className="form-group-location"> 
+                <label htmlFor="title">Location</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" 
+                        id="inlineRadioLocationDowntown" value="optionLocationDowntown"/>
+                        <label class="form-check-label" for="inlineRadioLocationDowntown">Downtown</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationWestEnd" value="optionLocationWestEnd"/>
+                        <label class="form-check-label" for="inlineRadioLocationWestEnd">West End</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationEastNashville" value="optionLocationEastNashville"/>
+                        <label class="form-check-label" for="inlineRadioLocationEastNashville">East Nashville</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationGulch" 
+                        value="optionLocationGulch"/>
+                        <label class="form-check-label" for="inlineRadioLocationGulch">Gulch</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationNorthNashville" 
+                        value="optionLocationNorthNashville"/>
+                        <label class="form-check-label" for="inlineRadioLocationNorthNashville">NorthNashville</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationMidtown" 
+                        value="optionLocationMidtown"/>
+                        <label class="form-check-label" for="inlineRadioLocationMidtown">Midtown</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationGermantown" 
+                        value="optionLocationGermantown"/>
+                        <label class="form-check-label" for="inlineRadioLocationGermantown">Germantown</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioLocation" id="inlineRadioLocationCityLimits" 
+                        value="optionLocationCityLimits"/>
+                        <label class="form-check-label" for="inlineRadioLocationCityLimits">City Limits</label>
+                    </div>
+                </div>
+                </fieldset>
+        {/* <fieldset>
             <div className="form-group-venue">
                 <label htmlFor="title">Inside or Outside</label>
-                <input type="radio" id="venue--indoor" required autoFocus 
+                <li>
+                    <input type="radio" id="venue--indoor" required autoFocus 
                 className="form-control" placeholder="Indoor Venue" 
                 value={place.VenueTypeId} onChange={handleControlledInputChange} />
+                indoor venue </li>
                 <input type="radio" id="venue--outdoor" required autoFocus 
                 className="form-control" placeholder="Outdoor Venue" 
                 value={place.VenueTypeId} onChange={handleControlledInputChange} />
             </div>
-        </fieldset>
+        </fieldset> */}
         {/* <fieldset>
             <div className="form-group">
             <label htmlFor="url">Article url:</label>
