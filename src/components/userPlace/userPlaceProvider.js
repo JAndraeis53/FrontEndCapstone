@@ -3,50 +3,50 @@ import React, {useState, createContext, useContext } from "react"
 export const UserPlaceContext = createContext()
 
 export const UserPlaceProvider = (props) => {
-    const [userplaces, setuserPlaces] = useState([])
+    const [UserPlaces, setUserPlaces] = useState([])
 
-    const getuserPlaces = () => {
-        return fetch("http://localhost:8088/UserPlaces")
+    const getUserPlaces = () => {
+        return fetch("http://localhost:8088/UserPlaces?_expand=place")
         .then(res => res.json())
-        .then(setuserPlaces)
+        .then(setUserPlaces)
     }
 
-    const getuserPlaceById = (id) => {
-        return fetch(`http://localhost:8088/userPlaces/${id}`)
+    const getUserPlaceById = (id) => {
+        return fetch(`http://localhost:8088/UserPlaces/${id}?_expand=place`)
         .then(res => res.json())
     }
     
-    const adduserPlaces = userplaceObj => {
-        return fetch("http://localhost:8088/userPlaces", {
+    const addUserPlaces = UserPlaceObj => {
+        return fetch("http://localhost:8088/UserPlaces?_expand=place", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(userplaceObj)
+            body: JSON.stringify(UserPlaceObj)
         })
-        .then(getuserPlaces)
+        .then(getUserPlaces)
     }
     
-    const deleteuserPlace = userplaceId => {
-        return fetch(`http://localhost:8088/places/${userplaceId}`,{
+    const deleteUserPlace = UserPlaceId => {
+        return fetch(`http://localhost:8088/UserPlaces/${UserPlaceId}?_expand=place`,{
             method: "DELETE",
-        }).then(getuserPlaces)
+        }).then(getUserPlaces)
     }
     
-    const updateuserPlace = (userplace) => {
-        return fetch(`http://localhost:8088/places/${userplace.id}`, {
+    const updateUserPlace = (UserPlace) => {
+        return fetch(`http://localhost:8088/UserPlaces/${UserPlace.id}?_expand=place`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(userplace)
+            body: JSON.stringify(UserPlace)
         })
-        .then(getuserPlaces)
+        .then(getUserPlaces)
     }
 
     return (
         <UserPlaceContext.Provider value={{
-            userplaces, getuserPlaces, adduserPlaces, deleteuserPlace, updateuserPlace, getuserPlaceById
+            UserPlaces, getUserPlaces, addUserPlaces, deleteUserPlace, updateUserPlace, getUserPlaceById
         }}>
             {props.children}
         </UserPlaceContext.Provider>
