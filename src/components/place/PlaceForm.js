@@ -125,14 +125,19 @@ export const PlaceForm = () => {
     return (
         <>
         <form className="placeForm">
-        <h2 className="articleForm__title">places</h2>
+        <h2 className="placeForm__title">Let's plan the night out</h2>
         <fieldset>
-            <div className="form-group">
-            <label htmlFor="title">Article Title:</label>
-            <input type="text" id="title" required autoFocus className="form-control" placeholder="Article title" value={article.title} onChange={handleControlledInputChange} />
+            <div className="form-group-venue">
+                <label htmlFor="title">Inside or Outside</label>
+                <input type="radio" id="venue--indoor" required autoFocus 
+                className="form-control" placeholder="Indoor Venue" 
+                value={place.VenueTypeId} onChange={handleControlledInputChange} />
+                <input type="radio" id="venue--outdoor" required autoFocus 
+                className="form-control" placeholder="Outdoor Venue" 
+                value={place.VenueTypeId} onChange={handleControlledInputChange} />
             </div>
         </fieldset>
-        <fieldset>
+        {/* <fieldset>
             <div className="form-group">
             <label htmlFor="url">Article url:</label>
             <input type="text" id="url" required autoFocus className="form-control" placeholder="Article url" value={article.url} onChange={handleControlledInputChange} />
@@ -143,9 +148,9 @@ export const PlaceForm = () => {
             <label htmlFor="synopsis">Article synopsis:</label>
             <input type="text" id="synopsis" required autoFocus className="form-control" placeholder="Article synopsis" value={article.synopsis} onChange={handleControlledInputChange} />
             </div>
-        </fieldset>
+        </fieldset> */}
         <button className="btn btn-primary" onClick={handleClickSavePlace}>
-            Save Article
+            Ready to make a date?
             </button>
         </form>
     </>
