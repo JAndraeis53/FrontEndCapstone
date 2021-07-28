@@ -20,9 +20,9 @@ export const UserPlaceDetail = () => {
 
     return (
         <section className="UserPlace">
-        <h3 className="UserPlace__name">Name: {UserPlace.id}</h3>
+        <h3 className="UserPlace__name">Name: {UserPlace.place?.name}</h3>
         <div className="UserPlace__address"> Address: {UserPlace.place?.name}</div>
-        <div className="UserPlace__description"> Description: {UserPlace.placeId}</div>
+        <div className="UserPlace__description"> Description: {UserPlace.place?.description}</div>
         </section>
     )
     }

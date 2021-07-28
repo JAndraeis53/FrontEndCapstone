@@ -20,8 +20,11 @@ return (
     
     <div className="UserPlaces">
         {UserPlaces.map((UserPlace) => {
+            if (
+                UserPlace.userId == sessionStorage.getItem("buster_user")
+            ){
         return <UserPlaceCard key={UserPlace.id} UserPlace={UserPlace} />;
-        })}
+        }})}
     </div>
     </>
 );

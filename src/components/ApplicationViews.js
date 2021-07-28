@@ -28,20 +28,20 @@ export const ApplicationViews = () => {
         
             <UserPlaceProvider>
                 <PlaceProvider>
-                <Route exact path="/UserPlaces">
-                    <UserPlaceList />
-                </Route>
+                    <Route exact path="/UserPlaces">
+                        <UserPlaceList />
+                    </Route>
 
-                <Route exact path="/UserPlaces/detail/:UserPlaceId(\d+)">
-                    <UserPlaceDetail />
-                </Route>
-                <Route exact path="/UserPlaces/create">
-                    <UserPlaceList />
-                </Route>
+                    <Route exact path="/UserPlaces/detail/:UserPlaceId(\d+)">
+                        <UserPlaceDetail />
+                    </Route>
+                    <Route exact path="/UserPlaces/create">
+                        <UserPlaceList />
+                    </Route>
 
-                <Route path="/UserPlaces/edit/:placesId(\d+)">
-                    <UserPlaceList />
-                </Route>
+                    <Route path="/UserPlaces/edit/:placesId(\d+)">
+                        <UserPlaceList />
+                    </Route>
                 </PlaceProvider>
             </UserPlaceProvider>
         </>
