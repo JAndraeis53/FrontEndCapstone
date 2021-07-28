@@ -4,42 +4,40 @@ import { PlaceProvider } from "./place/PlaceProvider"
 import { PlaceList } from "./place/PlaceList"
 import { PlaceForm } from "./place/PlaceForm"
 import { VenueProvider } from "./VenueType/VenueProvider"
-// import { userPlaceProvider} from "./userPlace/userPlaceProvider"
-// import { userPlaceList } from "./userPlace/userPlaceList"
-// import { userPlaceForm } from "./userPlace/userPlaceForm"
+import { UserPlaceProvider} from "./UserPlace/UserPlaceProvider"
+import { UserPlaceList } from "./UserPlace/UserPlaceList"
+// import { UserPlaceForm } from "./UserPlace/UserPlaceForm"
 
 export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
-                {/* <VenueProvider> */}
-                    <Route exact path="/">
-                        <PlaceForm />
-                    </Route>
+                <Route exact path="/">
+                    <PlaceForm />
+                </Route>
 
-                    <Route exact path="/places/create">
-                        <PlaceForm />
-                    </Route>
+                <Route exact path="/places/create">
+                    <PlaceForm />
+                </Route>
 
-                    <Route path="/places/edit/:placesId(\d+)">
-                        <PlaceForm />
-                    </Route>
-                {/* </VenueProvider> */}
+                <Route path="/places/edit/:placesId(\d+)">
+                    <PlaceForm />
+                </Route>
             </PlaceProvider>
         
-            {/* <userPlaceProvider>
-                <Route exact path="/userPlaces">
-                    <userPlaceList />
+            <UserPlaceProvider>
+                <Route exact path="/UserPlaces">
+                    <UserPlaceList />
                 </Route>
 
-                <Route exact path="/userPlaces/create">
-                    <userPlaceForm />
+                <Route exact path="/UserPlaces/create">
+                    <UserPlaceList />
                 </Route>
 
-                <Route path="/userPlaces/edit/:placesId(\d+)">
-                    <userPlaceForm />
+                <Route path="/UserPlaces/edit/:placesId(\d+)">
+                    <UserPlaceList />
                 </Route>
-            </userPlaceProvider> */}
+            </UserPlaceProvider>
         </>
     )
 }
