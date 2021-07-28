@@ -8,7 +8,7 @@ export const NavBar = (props) => {
 
         <ul className="nav nav-pills nav-fill">
             <li className="nav-item">
-            <Link className="nav-link" to="/places">Let's Get Started</Link>
+            <Link className="nav-link" to="/">Let's Get Started</Link>
             </li>
             <li className="nav-item">
             <Link className="nav-link" to="/userPlaces">Personal List</Link>
