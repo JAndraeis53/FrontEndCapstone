@@ -5,22 +5,26 @@ import { UserPlaceContext } from "./UserPlaceProvider";
 import { useHistory } from "react-router-dom";
 
 export const UserPlaceList = () => {
-const { userplaces, getuserPlaces } = useContext(UserPlaceContext);
+const { UserPlaces, getUserPlaces } = useContext(UserPlaceContext);
 const history = useHistory();
 
 useEffect(() => {
-    getuserPlaces();
+    getUserPlaces();
 }, []);
+
+console.log(UserPlaces)
 
 return (
     <>
     <h2>Users Places</h2>
     
-    <div className="places">
-        {/* the "if" statement code inside the .map makes the messages private */}
-        {userplaces.map((userplace) => {
-        return <UserPlaceCard key={userplace.id} place={userplace} />;
-        })}
+    <div className="UserPlaces">
+        {UserPlaces.map((UserPlace) => {
+            if (
+                UserPlace.userId == sessionStorage.getItem("buster_user")
+            ){
+        return <UserPlaceCard key={UserPlace.id} UserPlace={UserPlace} />;
+        }})}
     </div>
     </>
 );
