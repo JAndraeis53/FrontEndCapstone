@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useEffect, useState } from "react" 
 import { useHistory } from "react-router"
 import { PlaceContext } from "./PlaceProvider"
+import { VenueTypeContext } from "../ProviderGroup/VenueTypeProvider"
 import "./Place.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 // import { useParams } from "react-router-dom"
@@ -8,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 export const PlaceForm = () => {
     const { addPlace } = useContext(PlaceContext)
+    const { venueTypes, getVenueTypes } = useContext(VenueTypeContext)
     // const { addVenues, updateVenue, getVenueTypes, getVenueById } = useContext(VenueContext)
 
     const [place, setPlaces] = useState({
@@ -21,6 +23,11 @@ export const PlaceForm = () => {
     });
 
     const history = useHistory()
+
+    useEffect(() => {
+        getVenueTypes().then(getEventTypes)
+    }, [])
+
 
     // const [isLoading, setIsLoading] = useState(true)
     // const { placeId } = useParams()
@@ -40,6 +47,9 @@ export const PlaceForm = () => {
         
     const handleClickSavePlace = (event) => {
         event.preventDefault() 
+
+        const VenueTypeId = parseInt(place.VenueTypeId)
+
             // if (place.name === "" || place.date === "") {
             //     window.alert("Please fill in all fields")
             
@@ -127,7 +137,7 @@ export const PlaceForm = () => {
         <>
         <form className="placeForm">
             <h2 className="placeForm__title">Let's plan the night out</h2>
-                <fieldset>
+                {/* <fieldset>
                 <div className="form-group-venue"> 
                 <label htmlFor="title">Inside or Outside</label>
                     <div class="form-check form-check-inline">
@@ -225,20 +235,33 @@ export const PlaceForm = () => {
                         <label class="form-check-label" for="inlineRadioLocationCityLimits">City Limits</label>
                     </div>
                 </div>
-                </fieldset>
-        {/* <fieldset>
+                </fieldset> */}
+
+
+
+
+                
+        <fieldset>
             <div className="form-group-venue">
                 <label htmlFor="title">Inside or Outside</label>
-                <li>
-                    <input type="radio" id="venue--indoor" required autoFocus 
-                className="form-control" placeholder="Indoor Venue" 
-                value={place.VenueTypeId} onChange={handleControlledInputChange} />
-                indoor venue </li>
-                <input type="radio" id="venue--outdoor" required autoFocus 
-                className="form-control" placeholder="Outdoor Venue" 
-                value={place.VenueTypeId} onChange={handleControlledInputChange} />
+                <select
+                    type="venueTypeId" 
+                    id="venue--indoor" 
+                    required autoFocus 
+                    className="form-control" 
+                    placeholder="Indoor Venue" 
+                    value={place.VenueTypeId} 
+                    onChange={handleControlledInputChange} 
+                >
+                <option value="0"> </option>
+                {venueTypes.map((l) => ( 
+                <option key={l.id} value={l.id}>
+                    {l.venueSelect}
+                </option>
+                ))}
+                </select>
             </div>
-        </fieldset> */}
+        </fieldset>
         {/* <fieldset>
             <div className="form-group">
             <label htmlFor="url">Article url:</label>

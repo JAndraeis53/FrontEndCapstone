@@ -7,23 +7,26 @@ import { VenueProvider } from "./VenueType/VenueProvider"
 import { UserPlaceProvider} from "./UserPlace/UserPlaceProvider"
 import { UserPlaceList } from "./UserPlace/UserPlaceList"
 import { UserPlaceDetail } from "./UserPlace/UserPlaceDetail"
+import { VenueTypeProvider } from "./ProviderGroup/VenueTypeProvider"
 // import { UserPlaceForm } from "./UserPlace/UserPlaceForm"
 
 export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
-                <Route exact path="/">
-                    <PlaceForm />
-                </Route>
+                <VenueTypeProvider>
+                    <Route exact path="/">
+                        <PlaceForm />
+                    </Route>
 
-                <Route exact path="/places/create">
-                    <PlaceForm />
-                </Route>
+                    <Route exact path="/places/create">
+                        <PlaceForm />
+                    </Route>
 
-                <Route path="/places/edit/:placesId(\d+)">
-                    <PlaceForm />
-                </Route>
+                    <Route path="/places/edit/:placesId(\d+)">
+                        <PlaceForm />
+                    </Route>
+                </VenueTypeProvider>
             </PlaceProvider>
         
             <UserPlaceProvider>
