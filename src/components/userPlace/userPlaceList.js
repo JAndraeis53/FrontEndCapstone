@@ -12,7 +12,6 @@ useEffect(() => {
     getUserPlaces();
 }, []);
 
-console.log(UserPlaces)
 
 return (
     <>

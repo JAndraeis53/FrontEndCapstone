@@ -1,16 +1,29 @@
-import React, { useContext, createContext, useEffect, useState } from "react" 
+import React, { useContext, useEffect, useState } from "react" 
 import { useHistory } from "react-router"
+import { useParams } from "react-router-dom"
 import { PlaceContext } from "./PlaceProvider"
+import { EventTypeContext } from "../ProviderGroup/EventTypeProvider"
+import { VenueTypeContext } from "../ProviderGroup/VenueTypeProvider"
+import { LocationTypeContext } from "../ProviderGroup/LocationTypeProvider"
+import { ActiveTypeContext } from "../ProviderGroup/ActiveTypeProvider"
 import "./Place.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-// import { useParams } from "react-router-dom"
-// import { VenueContext } from "./VenueProvider"
 
 export const PlaceForm = () => {
-    const { addPlace } = useContext(PlaceContext)
-    // const { addVenues, updateVenue, getVenueTypes, getVenueById } = useContext(VenueContext)
+    const { addPlace, getPlace, getPlaceById } = useContext(PlaceContext)
+    const { eventTypes, getEventTypes} = useContext(EventTypeContext)
+    const { venueTypes, getVenueTypes } = useContext(VenueTypeContext)
+    const { locationTypes, getLocationTypes } = useContext(LocationTypeContext)
+    const { activeTypes, getActiveTypes } = useContext(ActiveTypeContext)
 
-    const [place, setPlaces] = useState({
+    const [selection, setSelection ] = useState({
+        ActiveTypeId: 0,
+        VenueTypeId: 0,
+        EventTypeId: 0,
+        LocationTypeId: 0
+    })
+
+    const [place, setPlace] = useState({
         name: "",
         address: "",
         description: "",
@@ -20,114 +33,146 @@ export const PlaceForm = () => {
         LocationTypeId: 0
     });
 
+    const [isLoading, setIsLoading] = useState(true)
+    const { taskId } = useParams
     const history = useHistory()
 
-    // const [isLoading, setIsLoading] = useState(true)
-    // const { placeId } = useParams()
-    // const history = useHistory(); 
     
     const handleControlledInputChange = (event) => {
-        const newPlace = { ...place } 
+        const newSelection = { ...selection } 
         let selectedVal = event.target.value 
-
-        // if (event.target.id.includes("Id")) {
-        //     selectedVal = parseInt(selectedVal)
-        // }
-            newPlace[event.target.id] = selectedVal
-            setPlaces(newPlace)
+        if (event.target.id.includes("Id")) {
+            selectedVal = parseInt(selectedVal)
+        }
+            newSelection[event.target.id] = selectedVal
+            setSelection(newSelection)
     }
 
-        
+
+
+
+
     const handleClickSavePlace = (event) => {
         event.preventDefault() 
-            // if (place.name === "" || place.date === "") {
-            //     window.alert("Please fill in all fields")
+        const VenueTypeId = parseInt(place.VenueTypeId)
+
+            if (place.ActiveTypeId === "" || place.VenueTypeId === "" || place.LocationTypeId === "" || place.EventTypeId === "") {
+                window.alert("Please fill in all fields")
             
-            // } else {
-            //     setIsLoading(true);
+            } else {
+                setIsLoading(true);
                 
-            // } if  (placeId){
-            //     updatePlace({
-            //         id: place.id, 
-            //         name: place.name,
-            //         address: place.address,
-            //         description: place.description,
-            //         EnergyType: place.ActiveTypeId,
-            //         VenueType: place.VenueTypeId,
-            //         EventType: place.EventTypeId,
-            //         LocationType: place.LocationTypeId
+            } if  (place.Id){
+                getPlace({
+                    id: place.id, 
+                    ActiveType: place.ActiveTypeId,
+                    VenueType: place.VenueTypeId,
+                    EventType: place.EventTypeId,
+                    LocationType: place.LocationTypeId
                     
-            //     })
-            //     .then(() => history.push("/places"))
-            // } else {
-            //         addPlaces({
-            //             id: place.id, 
-            //             name: place.name,
-            //             address: place.address,
-            //             description: place.description,
-            //             EnergyType: place.ActiveTypeId,
-            //             VenueType: place.VenueTypeId,
-            //             EventType: place.EventTypeId,
-            //             LocationType: place.LocationTypeId
-            //         })
-            //         .then(() => history.push("/places"))
-            //     }
-            const newPlace = {
-                name: place.name,
-                address: place.address,
-                description: place.description,
-                ActiveTypeId: 0,
-                VenueTypeId: 0,
-                EventTypeId: 0,
-                LocationTypeId: 0
-                
-            }
-            addPlace(newPlace)
-                .then(() => history.push("/"))
+                })
+                .then(() => history.push("/UserPlaces"))
+            }}
 
-            }
-            
-    //         useEffect(() => {
-    //             getPlaces().then(() => {
-    //                 if (placeId) {
-    //                     getPlaceById(placeId)
-    //                     .then( place => {
-    //                         setPlaces(place)
-    //                         setIsLoading(false)
-    //                     })
-    //                 } else {
-    //                     setIsLoading(false)
-    //                 }
-    //             })
-    //         }, [])
-
-    //     return(
-    //     <form className="taskForm"> 
-    //         <h2 className="taskForm__Title">Let's plan a night out</h2>
-    //         <fieldset>
-    //             <div className="form-group">
-    //                 <label htmlFor="name">First Question: How's the weather? </label>
-    //                 <input type="radio" 
-    //                 value= "Indoor"
-    //                 id="Indoor" 
-    //                 required autoFocus className="form-control" 
-    //                 placeholder="Venue Type" 
-    //                 // value={VenueType.VenueSelect} 
-    //                 onChange={handleControlledInputChange} />
-    //             </div>
-    //         </fieldset>
-    //         <button className="btn btn-primary" 
-    //         disabled={isLoading} onClick={handleClickSavePlace}>
-    //             Submit
-    //         </button>
-    //     </form>
-    // )
+        useEffect(() => {
+            getVenueTypes()
+            getActiveTypes()
+            getLocationTypes()
+            getEventTypes()
+            } 
+            , [])
 
     return (
         <>
         <form className="placeForm">
             <h2 className="placeForm__title">Let's plan the night out</h2>
+            <fieldset>
+                    <div className="form-group-active">
+                        <label htmlFor="title">active</label>
+                        <select
+                            type="activeTypeId" 
+                            id="active" 
+                            required autoFocus 
+                            className="form-control" 
+                            placeholder="Event" 
+                            value={place.EventTypeId} 
+                            onChange={handleControlledInputChange} 
+                        >
+                        <option value="0"> </option>
+                        {activeTypes.map((r) => ( 
+                        <option key={r.id} value={r.id}>
+                            {r.activeSelect}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                </fieldset>
                 <fieldset>
+                    <div className="form-group-venue">
+                        <label htmlFor="title">Inside or Outside</label>
+                        <select
+                            type="venueTypeId" 
+                            id="venue--indoor" 
+                            required autoFocus 
+                            className="form-control" 
+                            placeholder="Indoor Venue" 
+                            value={place.VenueTypeId} 
+                            onChange={handleControlledInputChange} 
+                        >
+                        <option value="0"> there</option>
+                        {venueTypes.map((l) => ( 
+                        <option key={l.id} value={l.id}>
+                            {l.venueSelect}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="form-group-event">
+                        <label htmlFor="title">Event</label>
+                        <select
+                            type="eventTypeId" 
+                            id="event--" 
+                            required autoFocus 
+                            className="form-control" 
+                            placeholder="event" 
+                            value={place.EventTypeId} 
+                            onChange={handleControlledInputChange} 
+                        >
+                        <option value="0">what </option>
+                        {eventTypes.map((z) => ( 
+                        <option key={z.id} value={z.id}>
+                            {z.eventSelect}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <div className="form-group-location">
+                        <label htmlFor="title">location</label>
+                        <select
+                            type="locationTypeId" 
+                            id="location--" 
+                            required autoFocus 
+                            className="form-control" 
+                            placeholder="location" 
+                            value={place.locationTypeId} 
+                            onChange={handleControlledInputChange} 
+                        >
+                        <option value="0"> Where</option>
+                        {locationTypes.map((z) => ( 
+                        <option key={z.id} value={z.id}>
+                            {z.locationSelect}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                </fieldset>
+
+                {/* <fieldset>
                 <div className="form-group-venue"> 
                 <label htmlFor="title">Inside or Outside</label>
                     <div class="form-check form-check-inline">
@@ -225,32 +270,17 @@ export const PlaceForm = () => {
                         <label class="form-check-label" for="inlineRadioLocationCityLimits">City Limits</label>
                     </div>
                 </div>
-                </fieldset>
+                </fieldset> */}
+
+
+
         {/* <fieldset>
-            <div className="form-group-venue">
-                <label htmlFor="title">Inside or Outside</label>
-                <li>
-                    <input type="radio" id="venue--indoor" required autoFocus 
-                className="form-control" placeholder="Indoor Venue" 
-                value={place.VenueTypeId} onChange={handleControlledInputChange} />
-                indoor venue </li>
-                <input type="radio" id="venue--outdoor" required autoFocus 
-                className="form-control" placeholder="Outdoor Venue" 
-                value={place.VenueTypeId} onChange={handleControlledInputChange} />
-            </div>
-        </fieldset> */}
-        {/* <fieldset>
-            <div className="form-group">
-            <label htmlFor="url">Article url:</label>
-            <input type="text" id="url" required autoFocus className="form-control" placeholder="Article url" value={article.url} onChange={handleControlledInputChange} />
-            </div>
-        </fieldset>
-        <fieldset>
             <div className="form-group">
             <label htmlFor="synopsis">Article synopsis:</label>
             <input type="text" id="synopsis" required autoFocus className="form-control" placeholder="Article synopsis" value={article.synopsis} onChange={handleControlledInputChange} />
             </div>
         </fieldset> */}
+
         <button className="btn btn-primary" onClick={handleClickSavePlace}>
             Ready to make a date?
             </button>
@@ -259,4 +289,3 @@ export const PlaceForm = () => {
     )
 
 }
-// 

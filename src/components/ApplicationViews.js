@@ -3,27 +3,37 @@ import { Route } from "react-router-dom"
 import { PlaceProvider } from "./place/PlaceProvider"
 import { PlaceList } from "./place/PlaceList"
 import { PlaceForm } from "./place/PlaceForm"
-import { VenueProvider } from "./VenueType/VenueProvider"
 import { UserPlaceProvider} from "./UserPlace/UserPlaceProvider"
 import { UserPlaceList } from "./UserPlace/UserPlaceList"
 import { UserPlaceDetail } from "./UserPlace/UserPlaceDetail"
-// import { UserPlaceForm } from "./UserPlace/UserPlaceForm"
+import { VenueTypeProvider } from "./ProviderGroup/VenueTypeProvider"
+import { EventTypeProvider } from "./ProviderGroup/EventTypeProvider"
+import { LocationTypeProvider } from "./ProviderGroup/LocationTypeProvider"
+import { ActiveTypeProvider } from "./ProviderGroup/ActiveTypeProvider"
 
 export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
-                <Route exact path="/">
-                    <PlaceForm />
-                </Route>
+                <ActiveTypeProvider>
+                <LocationTypeProvider>
+                <EventTypeProvider>
+                <VenueTypeProvider>
+                    <Route exact path="/">
+                        <PlaceForm />
+                    </Route>
 
-                <Route exact path="/places/create">
-                    <PlaceForm />
-                </Route>
+                    <Route exact path="/places/create">
+                        <PlaceForm />
+                    </Route>
 
-                <Route path="/places/edit/:placesId(\d+)">
-                    <PlaceForm />
-                </Route>
+                    <Route path="/places/edit/:placesId(\d+)">
+                        <PlaceForm />
+                    </Route>
+                </VenueTypeProvider>
+                </EventTypeProvider>
+                </LocationTypeProvider>
+                </ActiveTypeProvider>
             </PlaceProvider>
         
             <UserPlaceProvider>
