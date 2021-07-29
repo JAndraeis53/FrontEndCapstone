@@ -71,7 +71,7 @@ export const PlaceForm = () => {
                     LocationType: place.LocationTypeId
                     
                 })
-                .then(() => history.push("/places"))
+                .then(() => history.push("/UserPlaces"))
             }}
 
         useEffect(() => {
@@ -86,6 +86,27 @@ export const PlaceForm = () => {
         <>
         <form className="placeForm">
             <h2 className="placeForm__title">Let's plan the night out</h2>
+            <fieldset>
+                    <div className="form-group-active">
+                        <label htmlFor="title">active</label>
+                        <select
+                            type="activeTypeId" 
+                            id="active" 
+                            required autoFocus 
+                            className="form-control" 
+                            placeholder="Event" 
+                            value={place.EventTypeId} 
+                            onChange={handleControlledInputChange} 
+                        >
+                        <option value="0"> </option>
+                        {activeTypes.map((r) => ( 
+                        <option key={r.id} value={r.id}>
+                            {r.activeSelect}
+                        </option>
+                        ))}
+                        </select>
+                    </div>
+                </fieldset>
                 <fieldset>
                     <div className="form-group-venue">
                         <label htmlFor="title">Inside or Outside</label>
@@ -112,43 +133,23 @@ export const PlaceForm = () => {
                         <label htmlFor="title">Event</label>
                         <select
                             type="eventTypeId" 
-                            id="event" 
+                            id="event--" 
                             required autoFocus 
                             className="form-control" 
-                            placeholder="Event" 
+                            placeholder="event" 
                             value={place.EventTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0">what </option>
-                        {eventTypes.map((c) => ( 
-                        <option key={c.id} value={c.id}>
-                            {c.eventSelect}
+                        {eventTypes.map((z) => ( 
+                        <option key={z.id} value={z.id}>
+                            {z.eventSelect}
                         </option>
                         ))}
                         </select>
                     </div>
                 </fieldset>
-                <fieldset>
-                    <div className="form-group-active">
-                        <label htmlFor="title">active</label>
-                        <select
-                            type="activeTypeId" 
-                            id="active" 
-                            required autoFocus 
-                            className="form-control" 
-                            placeholder="Event" 
-                            value={place.EventTypeId} 
-                            onChange={handleControlledInputChange} 
-                        >
-                        <option value="0">how </option>
-                        {activeTypes.map((r) => ( 
-                        <option key={r.id} value={r.id}>
-                            {r.activeSelect}
-                        </option>
-                        ))}
-                        </select>
-                    </div>
-                </fieldset>
+                
                 <fieldset>
                     <div className="form-group-location">
                         <label htmlFor="title">location</label>
