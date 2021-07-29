@@ -3,17 +3,21 @@ import { Route } from "react-router-dom"
 import { PlaceProvider } from "./place/PlaceProvider"
 import { PlaceList } from "./place/PlaceList"
 import { PlaceForm } from "./place/PlaceForm"
-import { VenueProvider } from "./VenueType/VenueProvider"
 import { UserPlaceProvider} from "./UserPlace/UserPlaceProvider"
 import { UserPlaceList } from "./UserPlace/UserPlaceList"
 import { UserPlaceDetail } from "./UserPlace/UserPlaceDetail"
 import { VenueTypeProvider } from "./ProviderGroup/VenueTypeProvider"
-// import { UserPlaceForm } from "./UserPlace/UserPlaceForm"
+import { EventTypeProvider } from "./ProviderGroup/EventTypeProvider"
+import { LocationTypeProvider } from "./ProviderGroup/LocationTypeProvider"
+import { ActiveTypeProvider } from "./ProviderGroup/ActiveTypeProvider"
 
 export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
+                <ActiveTypeProvider>
+                <LocationTypeProvider>
+                <EventTypeProvider>
                 <VenueTypeProvider>
                     <Route exact path="/">
                         <PlaceForm />
@@ -27,6 +31,9 @@ export const ApplicationViews = () => {
                         <PlaceForm />
                     </Route>
                 </VenueTypeProvider>
+                </EventTypeProvider>
+                </LocationTypeProvider>
+                </ActiveTypeProvider>
             </PlaceProvider>
         
             <UserPlaceProvider>

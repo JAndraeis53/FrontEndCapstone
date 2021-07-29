@@ -3,12 +3,12 @@ import React, {useState, createContext, useContext } from "react"
 export const PlaceContext = createContext()
 
 export const PlaceProvider = (props) => {
-    const [places, setPlaces] = useState([])
+    const [places, setPlace] = useState([])
 
-    const getPlaces = () => {
+    const getPlace = () => {
         return fetch("http://localhost:8088/places?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType")
         .then(res => res.json())
-        .then(setPlaces)
+        .then(setPlace)
     }
 
     const getPlaceById = (id) => {
@@ -16,7 +16,7 @@ export const PlaceProvider = (props) => {
         .then(res => res.json())
     }
     
-    const addPlaces = placeObj => {
+    const addPlace = placeObj => {
         return fetch("http://localhost:8088/places?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType", {
             method: "POST",
             headers: {
@@ -24,13 +24,13 @@ export const PlaceProvider = (props) => {
             },
             body: JSON.stringify(placeObj)
         })
-        .then(getPlaces)
+        .then(getPlace)
     }
     
     const deletePlace = placeId => {
         return fetch(`http://localhost:8088/places/${placeId}?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType`,{
             method: "DELETE",
-        }).then(getPlaces)
+        }).then(getPlace)
     }
     
     const updatePlace = (place) => {
@@ -41,12 +41,12 @@ export const PlaceProvider = (props) => {
             },
             body: JSON.stringify(place)
         })
-        .then(getPlaces)
+        .then(getPlace)
     }
 
     return (
         <PlaceContext.Provider value={{
-            places, getPlaces, addPlaces, deletePlace, updatePlace, getPlaceById
+            places, getPlace, addPlace, deletePlace, updatePlace, getPlaceById
         }}>
             {props.children}
         </PlaceContext.Provider>
