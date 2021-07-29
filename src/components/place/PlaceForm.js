@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useEffect, useState } from "react" 
 import { useHistory } from "react-router"
 import { PlaceContext } from "./PlaceProvider"
+import { EventTypeContext } from "../ProviderGroup/EventTypeProvider"
 import { VenueTypeContext } from "../ProviderGroup/VenueTypeProvider"
 import "./Place.css"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -9,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 export const PlaceForm = () => {
     const { addPlace } = useContext(PlaceContext)
+    const { eventTypes, getEventTypes} = useContext(EventTypeContext)
     const { venueTypes, getVenueTypes } = useContext(VenueTypeContext)
     // const { addVenues, updateVenue, getVenueTypes, getVenueById } = useContext(VenueContext)
 
@@ -257,6 +259,27 @@ export const PlaceForm = () => {
                 {venueTypes.map((l) => ( 
                 <option key={l.id} value={l.id}>
                     {l.venueSelect}
+                </option>
+                ))}
+                </select>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div className="form-group-event">
+                <label htmlFor="title">Event</label>
+                <select
+                    type="eventTypeId" 
+                    id="event--indoor" 
+                    required autoFocus 
+                    className="form-control" 
+                    placeholder="Indoor Event" 
+                    value={place.EventTypeId} 
+                    onChange={handleControlledInputChange} 
+                >
+                <option value="0"> </option>
+                {eventTypes.map((c) => ( 
+                <option key={c.id} value={c.id}>
+                    {c.eventSelect}
                 </option>
                 ))}
                 </select>
