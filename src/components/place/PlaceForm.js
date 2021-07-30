@@ -42,11 +42,9 @@ export const PlaceForm = () => {
     const handleControlledInputChange = (event) => {
         const newSelection = { ...selection } 
         let selectedVal = event.target.value 
-        if (event.target.id.includes("Id")) {
-            selectedVal = parseInt(selectedVal)
-        }
             newSelection[event.target.id] = selectedVal
             setSelection(newSelection)
+            console.log(selection)
     }
 
 
@@ -55,24 +53,20 @@ export const PlaceForm = () => {
 
     const handleClickSavePlace = (event) => {
         event.preventDefault() 
-        const venueTypeId = parseInt(place.venueTypeId)
-        const eventTypeId = parseInt(place.eventTypeId)
-        const activeTypeId = parseInt(place.activeTypeId)
-        const locationTypeId = parseInt(place.locationTypeId)
 
-            if (place.activeTypeId === "" || place.venueTypeId === "" || place.locationTypeId === "" || place.eventTypeId === "") {
+            if (selection.activeTypeId === "" || selection.venueTypeId === "" || selection.locationTypeId === "" || selection.eventTypeId === "") {
                 window.alert("Please fill in all fields")
             
             } else {
                 setIsLoading(true);
                 
-            } if  (place.Id){
+            } if (selection.Id){
                 getPlace({
                     id: place.id, 
-                    ActiveType: activeTypeId,
-                    VenueType: venueTypeId,
-                    EventType: eventTypeId,
-                    LocationType: locationTypeId
+                    ActiveType: selection.activeTypeId,
+                    VenueType: selection.venueTypeId,
+                    EventType: selection.eventTypeId,
+                    LocationType: selection.locationTypeId
                     
                 })
                 .then(() => history.push("/UserPlaces"))
@@ -94,12 +88,11 @@ export const PlaceForm = () => {
                     <div className="form-group-active">
                         <label htmlFor="title">active</label>
                         <select
-                            type="activeTypeId" 
-                            id="active" 
+                            id="activeTypeId" 
                             required autoFocus 
                             className="form-control" 
                             placeholder="Event" 
-                            value={place.activeTypeId} 
+                            value={selection.activeTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0"> </option>
@@ -115,12 +108,11 @@ export const PlaceForm = () => {
                     <div className="form-group-venue">
                         <label htmlFor="title">Inside or Outside</label>
                         <select
-                            type="venueTypeId" 
-                            id="venue--indoor" 
+                            id="venueTypeId" 
                             required autoFocus 
                             className="form-control" 
                             placeholder="Indoor Venue" 
-                            value={place.venueTypeId} 
+                            value={selection.venueTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0"> </option>
@@ -136,12 +128,11 @@ export const PlaceForm = () => {
                     <div className="form-group-event">
                         <label htmlFor="title">Event</label>
                         <select
-                            type="eventTypeId" 
-                            id="event--" 
+                            id="eventTypeId" 
                             required autoFocus 
                             className="form-control" 
                             placeholder="event" 
-                            value={place.eventTypeId} 
+                            value={selection.eventTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0"> </option>
@@ -158,12 +149,11 @@ export const PlaceForm = () => {
                     <div className="form-group-location">
                         <label htmlFor="title">location</label>
                         <select
-                            type="locationTypeId" 
-                            id="location--" 
+                            id="locationTypeId" 
                             required autoFocus 
                             className="form-control" 
                             placeholder="location" 
-                            value={place.locationTypeId} 
+                            value={selection.locationTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0"> </option>
