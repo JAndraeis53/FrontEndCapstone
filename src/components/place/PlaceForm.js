@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router"
 import { useParams } from "react-router-dom"
 import { PlaceContext } from "./PlaceProvider"
+import { UserPlaceContext } from "../UserPlace/UserPlaceProvider"
 import { EventTypeContext } from "../ProviderGroup/EventTypeProvider"
 import { VenueTypeContext } from "../ProviderGroup/VenueTypeProvider"
 import { LocationTypeContext } from "../ProviderGroup/LocationTypeProvider"
@@ -17,10 +18,10 @@ export const PlaceForm = () => {
     const { activeTypes, getActiveTypes } = useContext(ActiveTypeContext)
 
     const [selection, setSelection ] = useState({
-        ActiveTypeId: 0,
-        VenueTypeId: 0,
-        EventTypeId: 0,
-        LocationTypeId: 0
+        activeTypeId: 0,
+        venueTypeId: 0,
+        eventTypeId: 0,
+        locationTypeId: 0
     })
 
     const [place, setPlace] = useState({
@@ -54,9 +55,12 @@ export const PlaceForm = () => {
 
     const handleClickSavePlace = (event) => {
         event.preventDefault() 
-        const VenueTypeId = parseInt(place.VenueTypeId)
+        const venueTypeId = parseInt(place.venueTypeId)
+        const eventTypeId = parseInt(place.eventTypeId)
+        const activeTypeId = parseInt(place.activeTypeId)
+        const locationTypeId = parseInt(place.locationTypeId)
 
-            if (place.ActiveTypeId === "" || place.VenueTypeId === "" || place.LocationTypeId === "" || place.EventTypeId === "") {
+            if (place.activeTypeId === "" || place.venueTypeId === "" || place.locationTypeId === "" || place.eventTypeId === "") {
                 window.alert("Please fill in all fields")
             
             } else {
@@ -65,10 +69,10 @@ export const PlaceForm = () => {
             } if  (place.Id){
                 getPlace({
                     id: place.id, 
-                    ActiveType: place.ActiveTypeId,
-                    VenueType: place.VenueTypeId,
-                    EventType: place.EventTypeId,
-                    LocationType: place.LocationTypeId
+                    ActiveType: activeTypeId,
+                    VenueType: venueTypeId,
+                    EventType: eventTypeId,
+                    LocationType: locationTypeId
                     
                 })
                 .then(() => history.push("/UserPlaces"))
@@ -86,7 +90,7 @@ export const PlaceForm = () => {
         <>
         <form className="placeForm">
             <h2 className="placeForm__title">Let's plan the night out</h2>
-            <fieldset>
+                <fieldset>
                     <div className="form-group-active">
                         <label htmlFor="title">active</label>
                         <select
@@ -95,7 +99,7 @@ export const PlaceForm = () => {
                             required autoFocus 
                             className="form-control" 
                             placeholder="Event" 
-                            value={place.EventTypeId} 
+                            value={place.activeTypeId} 
                             onChange={handleControlledInputChange} 
                         >
                         <option value="0"> </option>
@@ -116,10 +120,10 @@ export const PlaceForm = () => {
                             required autoFocus 
                             className="form-control" 
                             placeholder="Indoor Venue" 
-                            value={place.VenueTypeId} 
+                            value={place.venueTypeId} 
                             onChange={handleControlledInputChange} 
                         >
-                        <option value="0"> there</option>
+                        <option value="0"> </option>
                         {venueTypes.map((l) => ( 
                         <option key={l.id} value={l.id}>
                             {l.venueSelect}
@@ -137,10 +141,10 @@ export const PlaceForm = () => {
                             required autoFocus 
                             className="form-control" 
                             placeholder="event" 
-                            value={place.EventTypeId} 
+                            value={place.eventTypeId} 
                             onChange={handleControlledInputChange} 
                         >
-                        <option value="0">what </option>
+                        <option value="0"> </option>
                         {eventTypes.map((z) => ( 
                         <option key={z.id} value={z.id}>
                             {z.eventSelect}
@@ -162,7 +166,7 @@ export const PlaceForm = () => {
                             value={place.locationTypeId} 
                             onChange={handleControlledInputChange} 
                         >
-                        <option value="0"> Where</option>
+                        <option value="0"> </option>
                         {locationTypes.map((z) => ( 
                         <option key={z.id} value={z.id}>
                             {z.locationSelect}
@@ -281,7 +285,7 @@ export const PlaceForm = () => {
             </div>
         </fieldset> */}
 
-        <button className="btn btn-primary" onClick={handleClickSavePlace}>
+            <button className="btn btn-primary" onClick={handleClickSavePlace}>
             Ready to make a date?
             </button>
         </form>
