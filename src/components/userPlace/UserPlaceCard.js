@@ -6,7 +6,7 @@ export const UserPlaceCard = ({ UserPlace }) => (
     <section className="UserPlace" >
         <h3 className="UserPlace_name">
         <Link to={`/UserPlaces/detail/${UserPlace.id}`}>
-            { UserPlace.id }. {UserPlace.place?.name}
+            {UserPlace.place?.name}
         </Link>
         </h3>
         <div className="UserPlace_address">Address: { UserPlace.place?.address}</div>

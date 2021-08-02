@@ -3,15 +3,15 @@ import React, {useState, createContext, useContext } from "react"
 export const PlaceContext = createContext()
 
 export const PlaceProvider = (props) => {
-    const [places, setPlace] = useState([])
+    const [places, setPlaces] = useState([])
 
-    const getPlace = () => {
+    const getPlaces = () => {
         return fetch("http://localhost:8088/places?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType")
         .then(res => res.json())
-        .then(setPlace)
+        .then(setPlaces)
     }
 
-    const getPlaceById = (id) => {
+    const getPlacesById = (id) => {
         return fetch(`http://localhost:8088/places/${id}?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType`)
         .then(res => res.json())
     }
@@ -24,13 +24,13 @@ export const PlaceProvider = (props) => {
             },
             body: JSON.stringify(placeObj)
         })
-        .then(getPlace)
+        .then(getPlaces)
     }
     
     const deletePlace = placeId => {
         return fetch(`http://localhost:8088/places/${placeId}?_expand=venueType&_expand=activeType&_expand=locationType&_expand=eventType`,{
             method: "DELETE",
-        }).then(getPlace)
+        }).then(getPlaces)
     }
     
     const updatePlace = (place) => {
@@ -41,12 +41,12 @@ export const PlaceProvider = (props) => {
             },
             body: JSON.stringify(place)
         })
-        .then(getPlace)
+        .then(getPlaces)
     }
 
     return (
         <PlaceContext.Provider value={{
-            places, getPlace, addPlace, deletePlace, updatePlace, getPlaceById
+            places, getPlaces, addPlace, deletePlace, updatePlace, getPlacesById
         }}>
             {props.children}
         </PlaceContext.Provider>

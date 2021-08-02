@@ -31,8 +31,8 @@ export const UserPlaceDetail = () => {
         <h3 className="UserPlace__name">Name: {UserPlace.place?.name}</h3>
         <div className="UserPlace__address"> Address: {UserPlace.place?.name}</div>
         <div className="UserPlace__description"> Description: {UserPlace.place?.description}</div>
-        <div className="Userplace__comments"> Review: </div>
-        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.id}`)}}>Edit</button>
+        <div className="UserPlace__comments"> Review: </div>
+        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.place?.id}`)}}>Edit</button>
         <button onClick={handleRelease}>Delete Place</button>
 
         </section>
