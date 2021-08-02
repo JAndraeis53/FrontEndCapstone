@@ -1,3 +1,19 @@
+import React from "react"
+import { Link } from "react-router-dom"
+import "./Place.css"
+
+export const PlaceCard = ({ place }) => (
+    <section className="Place" >
+        <h3 className="Place_name">
+        <Link to={`/Places/detail/${place.id}`}>
+            {place.name}
+        </Link>
+        </h3>
+        <div className="Place_address">Address: { place.address}</div>
+    </section>
+)
+
+
 // import React, { useContext } from "react" 
 // import { useHistory } from "react-router-dom"
 // import "./Place.css"

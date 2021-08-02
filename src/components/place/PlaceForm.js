@@ -45,30 +45,12 @@ export const PlaceForm = () => {
 
     const handleClickSavePlace = (event) => {
         event.preventDefault() 
-            debugger
             if (selection.activeTypeId === "" || selection.venueTypeId === "" || selection.locationTypeId === "" || selection.eventTypeId === "") {
                 window.alert("Please fill in all fields")}
             
                 else {const foundPlace = places.find( place => place.activeTypeId === selection.activeTypeId && place.locationTypeId === selection.locationTypeId && place.venueTypeId === selection.venueTypeId && place.eventTypeId === selection.eventTypeId )
-                history.push(`/UserPlaces/detail/${foundPlace.id}`)
+                history.push(`/places/detail/${foundPlace.id}`)
             }}
-
-
-    // const handleClickFindPlace = (event) => {
-    //     event.preventDefault()
-    //     const getMyPlaces = getPlace()
-
-    //     if(selection.activeTypeId === "" || selection.venueTypeId === "" || selection.locationTypeId === "" || selection.eventTypeId === "") {
-    //         window.alert("Please fill in all fields")
-    //     } else {
-    //         setIsLoading(true);
-    //     } if (selection.Id){
-
-    //     } getMyPlaces.find(getMyPlace => getMyPlace.id )
-
-
-
-
 
 
         useEffect(() => {

@@ -10,11 +10,14 @@ import { VenueTypeProvider } from "./ProviderGroup/VenueTypeProvider"
 import { EventTypeProvider } from "./ProviderGroup/EventTypeProvider"
 import { LocationTypeProvider } from "./ProviderGroup/LocationTypeProvider"
 import { ActiveTypeProvider } from "./ProviderGroup/ActiveTypeProvider"
+import { PlaceDetail } from "./place/PlaceDetail"
+
 
 export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
+                <UserPlaceProvider>
                 <ActiveTypeProvider>
                 <LocationTypeProvider>
                 <EventTypeProvider>
@@ -30,10 +33,16 @@ export const ApplicationViews = () => {
                     <Route path="/places/edit/:placesId(\d+)">
                         <PlaceForm />
                     </Route>
+
+                    <Route exact path="/places/detail/:placeId(\d+)">
+                        <PlaceDetail />
+                    </Route>
+
                 </VenueTypeProvider>
                 </EventTypeProvider>
                 </LocationTypeProvider>
                 </ActiveTypeProvider>
+                </UserPlaceProvider>
             </PlaceProvider>
         
             <UserPlaceProvider>
