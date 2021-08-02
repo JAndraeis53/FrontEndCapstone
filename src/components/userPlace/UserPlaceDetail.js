@@ -1,14 +1,22 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UserPlaceContext } from "./UserPlaceProvider"
 import "./UserPlace.css"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 export const UserPlaceDetail = () => {
-    const { getUserPlaceById } = useContext(UserPlaceContext)
+    const { getUserPlaceById, deleteUserPlace } = useContext(UserPlaceContext)
 
         const [UserPlace, setUserPlace] = useState({})
 
         const {UserPlaceId} = useParams();
+        const history = useHistory()
+
+    const handleRelease = () => {
+        deleteUserPlace(UserPlace.id)
+            .then(() => {
+            history.push("/UserPlaces")
+            })
+        }
 
     useEffect(() => {
         console.log("useEffect", UserPlaceId)
@@ -23,6 +31,10 @@ export const UserPlaceDetail = () => {
         <h3 className="UserPlace__name">Name: {UserPlace.place?.name}</h3>
         <div className="UserPlace__address"> Address: {UserPlace.place?.name}</div>
         <div className="UserPlace__description"> Description: {UserPlace.place?.description}</div>
+        <div className="Userplace__comments"> Review: </div>
+        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.id}`)}}>Edit</button>
+        <button onClick={handleRelease}>Delete Place</button>
+
         </section>
     )
     }
