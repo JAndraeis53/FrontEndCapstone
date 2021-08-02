@@ -17,6 +17,7 @@ export const ApplicationViews = () => {
     return (
         <>
             <PlaceProvider>
+                <UserPlaceProvider>
                 <ActiveTypeProvider>
                 <LocationTypeProvider>
                 <EventTypeProvider>
@@ -41,6 +42,7 @@ export const ApplicationViews = () => {
                 </EventTypeProvider>
                 </LocationTypeProvider>
                 </ActiveTypeProvider>
+                </UserPlaceProvider>
             </PlaceProvider>
         
             <UserPlaceProvider>

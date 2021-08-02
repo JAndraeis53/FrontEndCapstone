@@ -6,7 +6,7 @@ import { useParams, useHistory, Link } from "react-router-dom"
 
 export const PlaceDetail = () => {
     const { getPlacesById, deletePlace } = useContext(PlaceContext)
-    // const { addUserPlaces } = useContext(UserPlaceContext)
+    const { addUserPlace } = useContext(UserPlaceContext)
 
         const [place, setPlace] = useState({})
         console.log(place)
@@ -20,12 +20,13 @@ export const PlaceDetail = () => {
             })
         }
 
-    // const handleSaveUserPlace = () => {
-    //     addUserPlaces({
-    //         placeId: place.id,
-    //         userId: parseInt(sessionStorage.getItem("buster_user")),
-    //     })
-    // }
+    const handleSaveUserPlace = () => {
+        addUserPlace({
+            placeId: place.id,
+            userId: parseInt(sessionStorage.getItem("buster_user")),
+        })
+        .then (() => history.push(`/UserPlaces`))
+    }
 
     useEffect(() => {
         console.log("useEffect", placeId)
@@ -43,7 +44,7 @@ export const PlaceDetail = () => {
         <div className="Place__comments"> Decision Time </div>
 
 
-        {/* <button onClick={event => {handleSaveUserPlace()}}> Let's Go Out </button> */}
+        <button onClick={event => {handleSaveUserPlace()}}> Let's Go Out </button>
         
         <Link className="route-home" to="/">Let's Try again</Link>
         </section>

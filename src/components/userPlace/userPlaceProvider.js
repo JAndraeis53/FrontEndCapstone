@@ -16,7 +16,7 @@ export const UserPlaceProvider = (props) => {
         .then(res => res.json())
     }
     
-    const addUserPlaces = UserPlaceObj => {
+    const addUserPlace = UserPlaceObj => {
         return fetch("http://localhost:8088/UserPlaces?_expand=place", {
             method: "POST",
             headers: {
@@ -46,7 +46,7 @@ export const UserPlaceProvider = (props) => {
 
     return (
         <UserPlaceContext.Provider value={{
-            UserPlaces, getUserPlaces, addUserPlaces, deleteUserPlace, updateUserPlace, getUserPlaceById
+            UserPlaces, getUserPlaces, addUserPlace, deleteUserPlace, updateUserPlace, getUserPlaceById
         }}>
             {props.children}
         </UserPlaceContext.Provider>
