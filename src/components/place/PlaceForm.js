@@ -53,23 +53,6 @@ export const PlaceForm = () => {
             }}
 
 
-    // const handleClickFindPlace = (event) => {
-    //     event.preventDefault()
-    //     const getMyPlaces = getPlace()
-
-    //     if(selection.activeTypeId === "" || selection.venueTypeId === "" || selection.locationTypeId === "" || selection.eventTypeId === "") {
-    //         window.alert("Please fill in all fields")
-    //     } else {
-    //         setIsLoading(true);
-    //     } if (selection.Id){
-
-    //     } getMyPlaces.find(getMyPlace => getMyPlace.id )
-
-
-
-
-
-
         useEffect(() => {
             getVenueTypes()
             getActiveTypes()

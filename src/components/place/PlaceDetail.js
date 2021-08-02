@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { PlaceContext } from "./PlaceProvider"
+import { UserPlaceContext } from "../UserPlace/UserPlaceProvider"
 import "./Place.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, Link } from "react-router-dom"
 
 export const PlaceDetail = () => {
     const { getPlacesById, deletePlace } = useContext(PlaceContext)
+    // const { addUserPlaces } = useContext(UserPlaceContext)
 
         const [place, setPlace] = useState({})
         console.log(place)
@@ -17,6 +19,13 @@ export const PlaceDetail = () => {
             history.push("/Places")
             })
         }
+
+    // const handleSaveUserPlace = () => {
+    //     addUserPlaces({
+    //         placeId: place.id,
+    //         userId: parseInt(sessionStorage.getItem("buster_user")),
+    //     })
+    // }
 
     useEffect(() => {
         console.log("useEffect", placeId)
@@ -34,9 +43,9 @@ export const PlaceDetail = () => {
         <div className="Place__comments"> Decision Time </div>
 
 
-        {/* <button onClick={() => {history.push(`/UserPlaces/edit/${place.id}`)}}>Edit</button> */}
-        {/* <button onClick={handleRelease}>-</button> */}
-
+        {/* <button onClick={event => {handleSaveUserPlace()}}> Let's Go Out </button> */}
+        
+        <Link className="route-home" to="/">Let's Try again</Link>
         </section>
     )
     }
