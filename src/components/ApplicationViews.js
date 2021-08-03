@@ -11,6 +11,7 @@ import { EventTypeProvider } from "./ProviderGroup/EventTypeProvider"
 import { LocationTypeProvider } from "./ProviderGroup/LocationTypeProvider"
 import { ActiveTypeProvider } from "./ProviderGroup/ActiveTypeProvider"
 import { PlaceDetail } from "./place/PlaceDetail"
+import { UserPlaceForm } from "./UserPlace/UserPlaceForm"
 
 
 export const ApplicationViews = () => {
@@ -59,7 +60,7 @@ export const ApplicationViews = () => {
                     </Route>
 
                     <Route path="/UserPlaces/edit/:placesId(\d+)">
-                        <UserPlaceList />
+                        <UserPlaceForm />
                     </Route>
                 </PlaceProvider>
             </UserPlaceProvider>
