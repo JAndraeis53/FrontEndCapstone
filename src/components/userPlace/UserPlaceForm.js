@@ -30,7 +30,7 @@ export const UserPlaceForm = () => {
                     id: UserPlaceId,
                     placeId: UserPlace.place?.id,
                     userId: parseInt(sessionStorage.getItem("buster_user")),
-                    review:""
+                    review: UserPlace.review
                 })
                 .then(() => history.push("/UserPlaces/edit/:placesId(\d+)"))
             }

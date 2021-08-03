@@ -7,6 +7,7 @@ export const UserPlaceDetail = () => {
     const { getUserPlaceById, deleteUserPlace } = useContext(UserPlaceContext)
 
         const [UserPlace, setUserPlace] = useState({})
+        const [isChecked, setIsChecked] = useState(false)
 
         const {UserPlaceId} = useParams();
         const history = useHistory()
@@ -17,6 +18,11 @@ export const UserPlaceDetail = () => {
             history.push("/UserPlaces")
             })
         }
+    
+    const handleOnChange = () => {
+        setIsChecked(!isChecked)
+    }
+
 
     useEffect(() => {
         console.log("useEffect", UserPlaceId)
@@ -32,9 +38,14 @@ export const UserPlaceDetail = () => {
         <div className="UserPlace__address"> Address: {UserPlace.place?.name}</div>
         <div className="UserPlace__description"> Description: {UserPlace.place?.description}</div>
         <div className="UserPlace__comments"> Review: {UserPlace.review} </div>
-        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.place?.id}`)}}>Edit</button>
-        <button onClick={handleRelease}>Delete Place</button>
+        <div className="review-button">
+            <label htmlFor="checkbox">I loved it! </label>
+            <input type="checkbox" id="checkbox" value="Not bad" checked={isChecked} onChange={handleOnChange} />
+        </div>
 
+        {/* <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.place?.id}`)}}>Finish Edit</button> */}
+        <button onClick={handleRelease}>Delete Place</button>
+        
         </section>
     )
     }
