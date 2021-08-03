@@ -28,13 +28,13 @@ export const UserPlaceProvider = (props) => {
     }
     
     const deleteUserPlace = UserPlaceId => {
-        return fetch(`http://localhost:8088/UserPlaces/${UserPlaceId}?_expand=place`,{
+        return fetch(`http://localhost:8088/UserPlaces/${UserPlaceId}`,{
             method: "DELETE",
         }).then(getUserPlaces)
     }
     
     const updateUserPlace = (UserPlace) => {
-        return fetch(`http://localhost:8088/UserPlaces/${UserPlace.id}?_expand=place`, {
+        return fetch(`http://localhost:8088/UserPlaces/${UserPlace.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

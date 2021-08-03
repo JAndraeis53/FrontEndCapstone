@@ -43,7 +43,7 @@ export const UserPlaceDetail = () => {
             <input type="checkbox" id="checkbox" value="Not bad" checked={isChecked} onChange={handleOnChange} />
         </div>
 
-        {/* <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.place?.id}`)}}>Finish Edit</button> */}
+        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.id}`)}}>Finish Edit</button>
         <button onClick={handleRelease}>Delete Place</button>
         
         </section>

@@ -4,7 +4,7 @@ import { UserPlaceContext } from "./UserPlaceProvider"
 import "./UserPlace.css"
 
 export const UserPlaceForm = () => {
-    const { UserPlaces, getUserPlaces, updateUserPlace } = useContext(UserPlaceContext)
+    const { UserPlaces, getUserPlaces, updateUserPlace, getUserPlaceById } = useContext(UserPlaceContext)
 
     const [UserPlace, setUserPlace ] = useState({
         placeId: 0,
@@ -12,12 +12,14 @@ export const UserPlaceForm = () => {
         review: ""
     })
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const { UserPlaceId } = useParams()
     const history = useHistory()
 
     const handleControlledInputChange = (event) => {
         const newUserPlace = { ...UserPlace } 
-        let selectedVal = parseInt(event.target.value) 
+        let selectedVal = event.target.value
             newUserPlace[event.target.id] = selectedVal
             setUserPlace(newUserPlace)
             console.log(UserPlace)
@@ -28,14 +30,21 @@ export const UserPlaceForm = () => {
             if ( UserPlaceId ){
                 updateUserPlace({
                     id: UserPlaceId,
-                    placeId: UserPlace.place?.id,
+                    placeId: parseInt(UserPlace.place?.id),
                     userId: parseInt(sessionStorage.getItem("buster_user")),
                     review: UserPlace.review
                 })
-                .then(() => history.push("/UserPlaces/edit/:placesId(\d+)"))
+                .then(() => history.push(`/UserPlaces/detail/${UserPlaceId}`))
             }
     }
 
+    useEffect(() => {
+        getUserPlaceById(UserPlaceId)
+        .then(userplace => {
+            setUserPlace(userplace)
+            setIsLoading(false)
+        })
+    }, [])
 
     return (
         <>

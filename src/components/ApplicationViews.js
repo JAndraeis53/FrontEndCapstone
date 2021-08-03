@@ -59,7 +59,7 @@ export const ApplicationViews = () => {
                         <UserPlaceList />
                     </Route>
 
-                    <Route path="/UserPlaces/edit/:placesId(\d+)">
+                    <Route path="/UserPlaces/edit/:UserPlaceId(\d+)">
                         <UserPlaceForm />
                     </Route>
                 </PlaceProvider>
