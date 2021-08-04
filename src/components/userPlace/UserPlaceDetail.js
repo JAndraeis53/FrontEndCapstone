@@ -38,12 +38,12 @@ export const UserPlaceDetail = () => {
         <div className="UserPlace__address"> Address: {UserPlace.place?.name}</div>
         <div className="UserPlace__description"> Description: {UserPlace.place?.description}</div>
         <div className="UserPlace__comments"> Review: {UserPlace.review} </div>
-        <div className="review-button">
+        {/* <div className="review-button">
             <label htmlFor="checkbox">I loved it! </label>
             <input type="checkbox" id="checkbox" value="Not bad" checked={isChecked} onChange={handleOnChange} />
-        </div>
+        </div> */}
 
-        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.id}`)}}>Finish Edit</button>
+        <button onClick={() => {history.push(`/UserPlaces/edit/${UserPlace.id}`)}}>Leave a Review</button>
         <button onClick={handleRelease}>Delete Place</button>
         
         </section>
