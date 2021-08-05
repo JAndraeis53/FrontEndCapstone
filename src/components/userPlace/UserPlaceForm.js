@@ -49,7 +49,7 @@ export const UserPlaceForm = () => {
     return (
         <>
         <form className="UserPlaceForm">
-            <h2 className="UserPlaceForm__title">Leave a review?</h2>
+            <h2 className="UserPlaceForm__title">Leave a review!</h2>
             <fieldset>
                 <div className="form-group-review">
                     <label htmlFor="title">review</label>
