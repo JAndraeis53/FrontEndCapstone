@@ -15,7 +15,7 @@ useEffect(() => {
 
 return (
     <>
-    <h2>Users Places</h2>
+    <h2>Your Local Favorites</h2>
     
     <div className="UserPlaces">
         {UserPlaces.map((UserPlace) => {
