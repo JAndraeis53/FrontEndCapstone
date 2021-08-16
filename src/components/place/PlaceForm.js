@@ -68,7 +68,7 @@ export const PlaceForm = () => {
             <h2 className="placeForm__title">Let's plan the night out</h2>
                 <fieldset>
                     <div className="form-group-active">
-                        <label htmlFor="title">active</label>
+                        <label htmlFor="title">Active or Calm</label>
                         <select
                             id="activeTypeId" 
                             required autoFocus 
@@ -108,7 +108,7 @@ export const PlaceForm = () => {
                 </fieldset>
                 <fieldset>
                     <div className="form-group-event">
-                        <label htmlFor="title">Event</label>
+                        <label htmlFor="title">What type of Event</label>
                         <select
                             id="eventTypeId" 
                             required autoFocus 
@@ -129,7 +129,7 @@ export const PlaceForm = () => {
                 
                 <fieldset>
                     <div className="form-group-location">
-                        <label htmlFor="title">location</label>
+                        <label htmlFor="title">Choose your Location</label>
                         <select
                             id="locationTypeId" 
                             required autoFocus 

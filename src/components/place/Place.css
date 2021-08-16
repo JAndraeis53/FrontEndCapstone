@@ -10,9 +10,9 @@
      
       margin: 1em;
       padding: 1em;
-      border: 8px solid rgb(224, 128, 37);
+      border: 8px solid rgb(218, 215, 213);
       max-width: 500px;
-      -webkit-box-shadow: 5px 5px 15px 5px lightgrey; 
+      -webkit-box-shadow: 5px 5px 15px 5px rgb(114, 32, 32); 
       box-shadow: 5px 5px 15px 5px #000000;
     
   }
@@ -33,7 +33,7 @@
     margin: 2em;
     font-style: oblique;
     font-weight: bolder;
-    background-color:#f8f8ff;
+    background-color:#0404af;
     font-size: 16px;
 
 }
@@ -46,10 +46,12 @@
     margin: 1em;
     font-style: italic;
     font-weight:  light;
-    background-color: cornsilk;
+    background-color: rgb(236, 194, 22);
     font-size: 16px;
 
 
 }
 
-  
+.Place {
+  background-color: #19d1e2;
+}
