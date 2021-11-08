@@ -17,6 +17,8 @@ https://miro.com/app/board/o9J_l66Tfps=/
 
 Reminder for running the app:
 Repository is available under Github/FrontendCapstone from SSH cloning/Downloading/Installing
-run << nmp start >> under the mark2frontcap file
+
+run << npm start >> under the mark2frontcap file
+
 run << json-server -p 8088 -w database.json >> under the frontend-capstone-api file
 
