@@ -15,7 +15,7 @@ Link to WireFrame:
 https://miro.com/app/board/o9J_l66Tfps=/
 
 
-Reminder for running the app:
+Reminder for running this app:
 Repository is available under Github/FrontendCapstone from SSH cloning/Downloading/Installing
 
 run << npm start >> under the mark2frontcap
